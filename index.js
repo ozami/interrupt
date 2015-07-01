@@ -8,7 +8,7 @@
     new Notify("Hello", {
         body: "World",
         icon: "alert.ico",
-        timeout: 2000,
+        timeout: 2,
         notifyClose: function() {
             alert("here");
         }
