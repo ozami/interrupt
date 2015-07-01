@@ -1,13 +1,15 @@
 (function() {
-    if (!notify.isSupported) {
+    if (!Notify.isSupported) {
         return;
     }
-    if (notify.permissionLevel() == notify.PERMISSION_DEFAULT) {
-        notify.requestPermission();
+    if (Notify.permissionLevel == "default") {
+        Notify.requestPermission();
     }
-    notify.config({autoClose: 2000});
-    notify.createNotification("hello", {
-        body: "world",
-        icon: "alert.ico"
+    new Notify("Hello", {
+        body: "World",
+        icon: "alert.ico",
+        notifyClose: function() {
+            alert("here");
+        }
     });
 })();
