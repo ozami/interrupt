@@ -5,10 +5,10 @@
     if (Notify.permissionLevel == "default") {
         Notify.requestPermission();
     }
-    new Notify("Hello", {
-        body: "World",
+    new Notify("割り込みＯＫ？", {
+        body: "割り込み歓迎の場合はクリックしてください。",
         icon: "alert.ico",
-        timeout: 2,
+        timeout: 5,
         notifyClose: function() {
             alert("closed");
         },
