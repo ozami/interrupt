@@ -11,5 +11,5 @@
         notifyClose: function() {
             alert("here");
         }
-    });
+    }).show();
 })();
