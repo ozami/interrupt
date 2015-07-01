@@ -10,7 +10,10 @@
         icon: "alert.ico",
         timeout: 2,
         notifyClose: function() {
-            alert("here");
+            alert("closed");
+        },
+        notifyClick: function() {
+            alert("clicked");
         }
     }).show();
 })();
