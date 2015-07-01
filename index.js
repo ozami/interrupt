@@ -7,6 +7,7 @@
     }
     notify.config({autoClose: 2000});
     notify.createNotification("hello", {
-        body: "world"
+        body: "world",
+        icon: "alert.ico"
     });
 })();
