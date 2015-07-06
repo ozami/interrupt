@@ -39,7 +39,7 @@ var Interrupt = function() {
                         self.next_notify(new Date().addMinutes(5));
                     }
                 }).show();
-            }, 2000);
+            }, 2000)
         );
     };
 };
