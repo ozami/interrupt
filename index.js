@@ -46,3 +46,4 @@ var Interrupt = function() {
 
 var interrupt = new Interrupt();
 ko.applyBindings(interrupt);
+interrupt.checkPermission();
