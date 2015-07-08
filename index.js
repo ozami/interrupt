@@ -2,7 +2,7 @@ var Interrupt = function() {
     var self = this;
     self.notify_granted = ko.observable(false);
     self.interrupt_ok = ko.observable(false);
-    self.next_notify_time = ko.observable(null);
+    self.minutes_until_next_notify = ko.observable(null);
     self.is_start_button_enabled = ko.computed(function() {
         return self.notify_granted() && !self.interrupt_ok();
     });
@@ -26,10 +26,9 @@ var Interrupt = function() {
         if (self.interrupt_ok()) {
             return;
         }
-        self.interrupt_ok(true);
-        var interval = 3000;//5 * 60 * 1000;
+        var interval = 5 * 60 * 1000;
         var loop = function() {
-            self.next_notify_time(new Date().addMilliseconds(interval));
+            clearInterval(update_minutes_interval);
             var next_notify = setTimeout(function() {
                 var notify = new Notify("割り込みＯＫ？", {
                     body: "割り込みが入ってもよい場合はクリックしてください。",
@@ -42,8 +41,15 @@ var Interrupt = function() {
                 var timeout = setTimeout(function() {
                     notify.close();
                     self.stopInterruptOk();
-                }, 10 * 1000);
+                }, 15 * 1000);
             }, interval);
+            var next_notify_time = new Date().addMilliseconds(interval + 59 * 1000);
+            var updateMinutes = function() {
+                self.minutes_until_next_notify(next_notify_time.minutesFromNow());
+            };
+            updateMinutes();
+            var update_minutes_interval = setInterval(updateMinutes, 10 * 1000);
+            self.interrupt_ok(true);
         };
         loop();
     };
