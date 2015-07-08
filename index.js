@@ -28,18 +28,20 @@ var Interrupt = function() {
         }
         var interval = 5 * 60 * 1000;
         var loop = function() {
-            clearInterval(update_minutes_interval);
             var next_notify = setTimeout(function() {
                 var notify = new Notify("割り込みＯＫ？", {
                     body: "割り込みが入ってもよい場合はクリックしてください。",
                     icon: "alert.ico",
                     notifyClick: function() {
+                        clearInterval(update_minutes_interval);
+                        clearTimeout(timeout);
                         loop();
                     }
                 });
                 notify.show();
                 var timeout = setTimeout(function() {
                     notify.close();
+                    clearInterval(update_minutes_interval);
                     self.stopInterruptOk();
                 }, 15 * 1000);
             }, interval);
