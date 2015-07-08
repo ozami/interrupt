@@ -5,9 +5,9 @@
 <title>notify</title>
 </head>
 <body>
-  <button data-bind="enable: is_start_button_enabled, click: startInterruptOk">割り込みＯＫ</button>
-  <div data-bind="visible: interrupt_ok">
-    次の通知まであと <span data-bind="text: minutes_until_next_notify"></span> 分
+  <button data-bind="text: interrupt_ok()? '割り込みＮＧ': '割り込みＯＫ', click: toggleInterruptOk" style="padding: 2em;"></button>
+  <div data-bind="visible: interrupt_ok" style="margin-top: 1em;">
+    次の確認まであと <span data-bind="text: minutes_until_next_notify"></span> 分
   </div>
   <script src="sugar.min.js"></script>
   <script src="knockout-3.3.0.js"></script>

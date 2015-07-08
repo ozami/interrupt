@@ -59,7 +59,16 @@ var Interrupt = function() {
             return;
         }
         self.interrupt_ok(false);
-    }
+    };
+    
+    self.toggleInterruptOk = function() {
+        if (self.interrupt_ok()) {
+            self.stopInterruptOk();
+        }
+        else {
+            self.startInterruptOk();
+        }
+    };
 };
 
 var interrupt = new Interrupt();
